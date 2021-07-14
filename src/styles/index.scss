@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;700&display=swap");
+@import "variables";
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  color: $darkest;
+  background: $neutralLight;
+  font-family: "IBM Plex Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+button,
+input {
+  font-size: 16px;
+  outline: none;
+  border: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+@import "icon-font";

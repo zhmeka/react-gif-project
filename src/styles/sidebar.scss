@@ -1,0 +1,98 @@
+@import "variables";
+
+.sidebar {
+  width: 300px;
+  background-color: $white;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  height: 100vh;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  &-logo {
+    text-align: start;
+    font-size: 32px;
+    line-height: 1;
+    font-weight: 700;
+  }
+  &-logo,
+  &-create-button {
+    margin-bottom: 15px;
+  }
+  &-create-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px 10px 0;
+    color: $white;
+    background: $primary;
+    border-radius: $border;
+    &:hover {
+      background: $primary-hover;
+    }
+    &:active {
+      background: $primary-active;
+    }
+    i {
+      font-size: 20px;
+      margin-right: 5px;
+    }
+  }
+  &-list {
+    margin: 0;
+    padding: 0 0 15px 0;
+    list-style: none;
+    text-align: start;
+    font-size: 16px;
+    font-weight: 700;
+    z-index: 9;
+    border-bottom: 1px dashed $neutral;
+    li {
+      position: relative;
+      a:hover {
+        color: $primary-hover;
+      }
+    }
+    a {
+      padding: 10px 0;
+      display: block;
+    }
+    a.active {
+      color: $primary;
+      &::before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: calc(100% + 15px);
+        top: 0;
+        left: -15px;
+        background: $primary1;
+        z-index: -1;
+        border-radius: 0 $border $border 0;
+      }
+    }
+  }
+  &-social {
+    margin-top: 15px;
+    a {
+      display: inline-block;
+      width: 48px;
+      height: 48px;
+      padding: 10px;
+      margin-right: 10px;
+      border-radius: $border;
+      background: $neutral;
+      i {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 22px;
+        height: 100%;
+        width: 100%;
+      }
+    }
+    a:hover {
+      color: $white;
+      background: $dark;
+    }
+  }
+}

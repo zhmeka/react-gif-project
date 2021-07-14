@@ -1,0 +1,16 @@
+@import "variables";
+
+.home {
+  height: 100vh;
+  width: calc(100% - 300px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  &-gif {
+    border-radius: 50%;
+    height: 25vmin;
+    width: 25vmin;
+    background-color: $neutralDark;
+  }
+}

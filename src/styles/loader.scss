@@ -1,0 +1,26 @@
+@import "variables";
+
+.loader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 15px 0;
+  &-circle {
+    height: 60px;
+    width: 60px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: $primary $primary $primary transparent;
+    border-radius: 50%;
+    animation: 1s loading infinite linear;
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

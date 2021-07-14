@@ -1,0 +1,33 @@
+@import "variables";
+
+.create-text {
+  background: $neutral;
+  width: 100%;
+  padding: 15px;
+  border-radius: 24px;
+  &-wrap {
+    display: flex;
+  }
+  input {
+    width: 100%;
+    border: 1px solid;
+    border-color: $neutral;
+    border-radius: $border;
+    font-weight: 700;
+    &::placeholder {
+      font-weight: 400;
+    }
+  }
+  button {
+    margin-left: 10px;
+    width: 150px;
+    background: $primary;
+    color: $white;
+    border-radius: $border;
+    // animation: fade-on 0.25s;
+  }
+  input,
+  button {
+    padding: 10px 15px;
+  }
+}
