@@ -4,9 +4,8 @@ $dark: #615e69;
 $darkest: #34303e;
 
 $primary: #4d77ff;
-$primary-hover: #3363ff;
-$primary-active: #0030cc;
-$primary1: #e6ecff;
+$primaryActive: #3363ff;
+$primaryLight: #e6ecff;
 
 $neutral: #e8e8ea;
 $neutralLight: #f9f9f9;
@@ -22,20 +21,11 @@ $likeDark: #c32021;
 
 $border: 12px;
 
-@keyframes fade-on {
+@keyframes gradient-motion {
   0% {
-    opacity: 0;
+    background-position: 0% 0%;
   }
   100% {
-    opacity: 1;
-  }
-}
-
-@keyframes slide-bottom {
-  0% {
-    max-height: 0;
-  }
-  100% {
-    max-height: 900px;
+    background-position: 100% 0%;
   }
 }

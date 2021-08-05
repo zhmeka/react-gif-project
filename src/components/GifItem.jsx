@@ -1,9 +1,20 @@
 import "../styles/gifs.scss"
 import { useState } from "react"
+import { AnimateGifPanel } from "./animation"
+import Loader from "./Loader"
+import { Download } from "react-feather"
 
-export default function GifItem({ urlGIF, urlPrev, alt, item }) {
+const GifItem = ({ urlGIF, urlPrev, title }) => {
   const [isHover, setHover] = useState(false)
+  const [isLoad, setLoading] = useState(true)
   const [placeholder, setPlaceholder] = useState(true)
+
+  const onLoadGifHandler = () => {
+    if (placeholder) {
+      setPlaceholder(false)
+    }
+    setLoading(false)
+  }
 
   return (
     <div
@@ -11,37 +22,41 @@ export default function GifItem({ urlGIF, urlPrev, alt, item }) {
       onMouseLeave={() => setHover(false)}
       onMouseEnter={() => setHover(true)}
     >
-      {placeholder ? <Placeholder /> : null}
-      {isHover ? <GifButtons src={urlGIF} /> : null}
+      {placeholder && <Placeholder />}
+      {isHover && <GifPanel src={urlGIF} title={title} isLoad={isLoad} />}
       <img
-        style={placeholder ? { display: "none" } : {}}
         src={isHover ? urlGIF : urlPrev}
-        alt={alt}
-        onLoad={() => setPlaceholder(false)}
+        alt={title}
+        onLoad={isHover ? onLoadGifHandler : () => setPlaceholder(false)}
       />
     </div>
   )
 }
 
-function GifButtons({ src }) {
+const GifPanel = ({ src, title, isLoad }) => {
   return (
-    <div className="gif-buttons-grid">
-      <button className="gif-button like">
-        <i className="icon-like"></i>
-      </button>
-      <a
-        className="gif-button download"
-        href={src}
-        download
-        target="_blank"
-        rel="noreferrer"
-      >
-        <i className="icon-download"></i>
-      </a>
-    </div>
+    <AnimateGifPanel>
+      <div className="gif-loader">{isLoad && <Loader />}</div>
+      <div className="gif-buttons-grid">
+        <a
+          className="gif-button download"
+          href={src}
+          download
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Download />
+        </a>
+      </div>
+      <div className="gif-title-box">
+        <div className="gif-title">{title}</div>
+      </div>
+    </AnimateGifPanel>
   )
 }
 
-function Placeholder() {
+const Placeholder = () => {
   return <div className="placeholder"></div>
 }
+
+export default GifItem

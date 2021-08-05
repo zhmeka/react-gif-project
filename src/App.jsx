@@ -1,31 +1,32 @@
-import { Route } from "react-router-dom"
-import Sidebar from "./components/Sidebar"
-import SearchPage from "./components/SearchPage"
-import LikesPage from "./components/LikesPage"
+import { Route, Switch } from "react-router-dom"
+import { Sidebar, SidebarMobile } from "./components/Sidebar"
+import SearchPage from "./components/searchPage/SearchPage"
+import GifListPage from "./components/GifListPage"
 import HomePage from "./components/HomePage"
-import TrendingPage from "./components/TrendingPage"
-import CreateTextPage from "./components/CreateTextPage"
+import CreateTextPage from "./components/createTextPage/CreateTextPage"
+import Error404Page from "./components/Error404Page"
+import { useMediaQuery } from "./hooks/useMediaQuery"
 import "./styles/app.scss"
 
-function App() {
+const App = () => {
+  let isLargeDisplay = useMediaQuery("(min-width: 769px)")
+  let isSmallDisplay = useMediaQuery("(max-width: 768px)")
   return (
     <div className="App">
-      <Sidebar />
-      <Route path="/" exact>
-        <HomePage />
-      </Route>
-      <Route path="/trending">
-        <TrendingPage />
-      </Route>
-      <Route path="/search">
-        <SearchPage />
-      </Route>
-      <Route path="/likes">
-        <LikesPage />
-      </Route>
-      <Route path="/create-text">
-        <CreateTextPage />
-      </Route>
+      {isSmallDisplay && <SidebarMobile />}
+      {isLargeDisplay && <Sidebar />}
+      <Switch>
+        <Route path="/" exact component={HomePage} />
+        <Route path="/create-text" exact component={CreateTextPage} />
+        <Route path="/search" exact component={SearchPage} />
+        <Route path="/trending" exact>
+          <GifListPage key="trending" type="trending" />
+        </Route>
+        <Route path="/emoji" exact>
+          <GifListPage key="emoji" type="emoji" />
+        </Route>
+        <Route component={Error404Page} />
+      </Switch>
     </div>
   )
 }

@@ -1,0 +1,61 @@
+@import "variables";
+
+.create-text {
+  width: calc(100% + 30px);
+  padding: 30px 15px;
+  margin: -15px -15px 15px;
+  background: linear-gradient(
+    90deg,
+    rgba(126, 43, 60, 1) 20%,
+    rgba(45, 64, 162, 1) 50%,
+    rgba(126, 43, 60, 1) 80%
+  );
+  background-size: 500% 500%;
+  animation: gradient-motion 10s infinite;
+  &-wrap {
+    display: flex;
+  }
+  &-info {
+    color: $white;
+    margin: 0 0 10px;
+    display: flex;
+    align-items: center;
+    svg {
+      margin-right: 5px;
+    }
+  }
+  input {
+    width: 100%;
+    border-radius: $border;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    &::placeholder {
+      font-weight: 400;
+    }
+  }
+  button {
+    line-height: 1;
+    margin-left: 10px;
+    width: 150px;
+    background: $primary;
+    color: $white;
+    border-radius: $border;
+    // animation: fade-on 0.25s;
+  }
+  input,
+  button {
+    padding: 10px 15px;
+  }
+}
+
+@media (max-width: 425px) {
+  .create-text {
+    &-wrap {
+      flex-direction: column;
+      button {
+        width: 100%;
+        margin: 15px 0 0 0;
+      }
+    }
+  }
+}

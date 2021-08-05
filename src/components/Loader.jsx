@@ -1,9 +1,14 @@
+import { AnimateLoader } from "./animation"
 import "../styles/loader.scss"
 
-export default function Loader() {
+const Loader = () => {
   return (
     <div className="loader">
-      <div className="loader-circle"></div>
+      <AnimateLoader>
+        <div className="loader-circle"></div>
+      </AnimateLoader>
     </div>
   )
 }
+
+export default Loader

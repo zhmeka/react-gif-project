@@ -9,8 +9,19 @@
   flex-direction: column;
   &-gif {
     border-radius: 50%;
-    height: 25vmin;
-    width: 25vmin;
-    background-color: $neutralDark;
+    height: 20vmax;
+    width: 20vmax;
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 768px) {
+  .home {
+    height: calc(100vh - 62px);
+    width: 100%;
+    &-gif {
+      height: 60vmin;
+      width: 60vmin;
+    }
   }
 }

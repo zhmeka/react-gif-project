@@ -8,13 +8,14 @@
   padding: 15px;
   height: 100vh;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 9;
   &-logo {
     text-align: start;
     font-size: 32px;
     line-height: 1;
     font-weight: 700;
   }
-  &-logo,
+  & &-logo,
   &-create-button {
     margin-bottom: 15px;
   }
@@ -27,12 +28,13 @@
     background: $primary;
     border-radius: $border;
     &:hover {
-      background: $primary-hover;
+      opacity: 0.9;
     }
     &:active {
-      background: $primary-active;
+      background: $primaryActive;
+      opacity: 1;
     }
-    i {
+    svg {
       font-size: 20px;
       margin-right: 5px;
     }
@@ -48,51 +50,101 @@
     border-bottom: 1px dashed $neutral;
     li {
       position: relative;
-      a:hover {
-        color: $primary-hover;
+      margin-bottom: 5px;
+      &:last-of-type {
+        margin: 0;
       }
-    }
-    a {
-      padding: 10px 0;
-      display: block;
-    }
-    a.active {
-      color: $primary;
-      &::before {
-        content: "";
-        position: absolute;
-        height: 100%;
-        width: calc(100% + 15px);
-        top: 0;
-        left: -15px;
-        background: $primary1;
-        z-index: -1;
-        border-radius: 0 $border $border 0;
+      a {
+        padding: 6px 0;
+        display: flex;
+        align-items: center;
+        &:hover {
+          color: $primary;
+        }
+        &.active {
+          color: $primary;
+          &::before {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: calc(100% + 15px);
+            top: 0;
+            left: -15px;
+            background: $primaryLight;
+            z-index: -1;
+            border-radius: 0 $border $border 0;
+          }
+          &:hover {
+            &::before {
+              opacity: 0.6;
+            }
+          }
+        }
+      }
+      svg {
+        opacity: 0.7;
+        margin-right: 5px;
       }
     }
   }
+
   &-social {
     margin-top: 15px;
+    &,
+    & > a {
+      display: flex;
+    }
     a {
-      display: inline-block;
+      justify-content: center;
+      align-items: center;
       width: 48px;
       height: 48px;
       padding: 10px;
       margin-right: 10px;
-      border-radius: $border;
+      border-radius: 50%;
       background: $neutral;
-      i {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 22px;
-        height: 100%;
-        width: 100%;
+      &:hover {
+        opacity: 0.6;
+      }
+      &:active {
+        opacity: 1;
+        color: $white;
+        background: $dark;
       }
     }
-    a:hover {
-      color: $white;
-      background: $dark;
+  }
+}
+
+.sidebar-mobile {
+  background: $white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  position: relative;
+  z-index: 99999;
+  button {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mobile-menu {
+    position: absolute;
+    background: $white;
+    padding: 15px;
+    width: 100%;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    &-shadow {
+      position: absolute;
+      height: 10px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     }
   }
 }

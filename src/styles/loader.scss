@@ -4,23 +4,14 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 15px 0;
+  padding: 35px 0;
+  overflow: hidden;
   &-circle {
     height: 60px;
     width: 60px;
     border-width: 6px;
     border-style: solid;
-    border-color: $primary $primary $primary transparent;
+    border-color: $primary $primary $primary rgba($color: $white, $alpha: 0.2);
     border-radius: 50%;
-    animation: 1s loading infinite linear;
-  }
-}
-
-@keyframes loading {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(360deg);
   }
 }

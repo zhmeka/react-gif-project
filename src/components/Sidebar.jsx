@@ -1,42 +1,91 @@
+import { useState } from "react"
 import { NavLink } from "react-router-dom"
+import { AnimatedMobileMenu, AnimateUnmounting } from "./animation"
+import { Star, Plus, Search, Send, Smile, GitHub, X, Menu } from "react-feather"
 import "../styles/sidebar.scss"
 
-export default function Sidebar() {
+export const Sidebar = () => {
   return (
     <div className="sidebar">
-      <div className="sidebar-logo">
-        <NavLink to="/" exact>
-          GIF-Евгений
-        </NavLink>
-      </div>
+      <Logo />
+      <MenuList />
+    </div>
+  )
+}
+const Logo = () => {
+  return (
+    <div className="sidebar-logo">
+      <NavLink to="/" exact>
+        GIF-Евгений
+      </NavLink>
+    </div>
+  )
+}
+const MenuList = () => {
+  return (
+    <>
       <NavLink to="/create-text" className="sidebar-create-button">
-        <i className="icon-plus"></i> Создать GIF-текст
+        <Plus /> Создать GIF-текст
       </NavLink>
       <ul className="sidebar-list">
         <li>
           <NavLink to="/trending">
-            <i className="icon-popular"></i>Популярные анимации
+            <Star /> Популярные анимации
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/emoji">
+            <Smile /> Эмодзи
           </NavLink>
         </li>
         <li>
           <NavLink to="/search">
-            <i className="icon-search"></i>Поиск
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/likes">
-            <i className="icon-like"></i>Понравившиеся
+            <Search /> Поиск
           </NavLink>
         </li>
       </ul>
       <div className="sidebar-social">
-        <a rel="noreferrer" href="https://github.com/andr-evg" target="_blank">
-          <i className="icon-github"></i>
+        <a rel="noreferrer" href="https://github.com/zhmeka" target="_blank">
+          <GitHub />
         </a>
         <a rel="noreferrer" href="https://t.me/AndrYev" target="_blank">
-          <i className="icon-telegram"></i>
+          <Send />
         </a>
       </div>
+    </>
+  )
+}
+
+export const SidebarMobile = () => {
+  const [isActiveMobileMenu, setActiveMobileMenu] = useState(false)
+
+  const activeMobileMenuHandler = () => {
+    setActiveMobileMenu(false)
+  }
+
+  return (
+    <div className="sidebar-mobile">
+      <Logo />
+      <button onClick={() => setActiveMobileMenu((bool) => !bool)}>
+        {isActiveMobileMenu ? <X /> : <Menu />}
+      </button>
+      <AnimateUnmounting>
+        {isActiveMobileMenu && <MobileMenu close={activeMobileMenuHandler} />}
+      </AnimateUnmounting>
     </div>
+  )
+}
+
+const MobileMenu = ({ close }) => {
+  const onClickHandler = (e) => {
+    if (e.target.nodeName === "A") {
+      close()
+    }
+  }
+  return (
+    <AnimatedMobileMenu className="mobile-menu" onClickHandler={onClickHandler}>
+      <MenuList />
+      <div className="mobile-menu-shadow"></div>
+    </AnimatedMobileMenu>
   )
 }

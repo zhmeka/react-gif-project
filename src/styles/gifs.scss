@@ -6,9 +6,13 @@
   margin: 10px;
   position: relative;
   border-radius: $border;
-  transition: 0.05s transform ease;
-  &:hover {
-    transform: scale(1.05);
+  &-loader {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   img {
     width: 100%;
@@ -42,13 +46,22 @@
       background: $downloadDark;
       color: $white;
     }
-    &.like:hover {
-      background: $likeLight;
-      color: $likeDark;
-    }
-    &.like:active {
-      background: $like;
+  }
+  &-title-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
+    border-radius: $border $border 0 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0)
+    );
+    div {
       color: $white;
+      padding: 10px 15px;
     }
   }
 }
@@ -70,16 +83,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: 2s placeholder infinite;
-}
-
-@keyframes placeholder {
-  0% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0 50%;
-  }
+  animation: 2s gradient-motion infinite;
 }
 
 @media (max-width: 1280px) {
@@ -88,7 +92,13 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
+  .gif {
+    flex-basis: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 425px) {
   .gif {
     flex-basis: calc(100% - 20px);
   }
