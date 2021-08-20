@@ -1,11 +1,10 @@
-import { Route, Switch } from "react-router-dom"
+import { Redirect, Route, Switch } from "react-router-dom"
 import { Sidebar, SidebarMobile } from "./components/Sidebar"
 import SearchPage from "./components/searchPage/SearchPage"
 import GifListPage from "./components/GifListPage"
 import HomePage from "./components/HomePage"
 import CreateTextPage from "./components/createTextPage/CreateTextPage"
-import Error404Page from "./components/Error404Page"
-import { useMediaQuery } from "./hooks/useMediaQuery"
+import useMediaQuery from "./hooks/useMediaQuery"
 import "./styles/app.scss"
 
 const App = () => {
@@ -25,7 +24,7 @@ const App = () => {
         <Route path="/emoji" exact>
           <GifListPage key="emoji" type="emoji" />
         </Route>
-        <Route component={Error404Page} />
+        <Redirect to="/" />
       </Switch>
     </div>
   )

@@ -17,8 +17,10 @@
   & > div,
   label {
     margin-right: 25px;
-    color: $primary;
     font-weight: 700;
+  }
+  label {
+    color: $primary;
   }
 
   &-input {

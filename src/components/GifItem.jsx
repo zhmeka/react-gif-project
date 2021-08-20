@@ -1,13 +1,15 @@
-import "../styles/gifs.scss"
 import { useState } from "react"
-import { AnimateGifPanel } from "./animation"
 import Loader from "./Loader"
+import { AnimateGifPanel } from "./animation"
 import { Download } from "react-feather"
+import useMediaQuery from "../hooks/useMediaQuery"
+import "../styles/gifs.scss"
 
 const GifItem = ({ urlGIF, urlPrev, title }) => {
   const [isHover, setHover] = useState(false)
   const [isLoad, setLoading] = useState(true)
   const [placeholder, setPlaceholder] = useState(true)
+  let isSmallDisplay = useMediaQuery("(max-width: 768px)")
 
   const onLoadGifHandler = () => {
     if (placeholder) {
@@ -20,7 +22,8 @@ const GifItem = ({ urlGIF, urlPrev, title }) => {
     <div
       className="gif"
       onMouseLeave={() => setHover(false)}
-      onMouseEnter={() => setHover(true)}
+      onMouseEnter={!isSmallDisplay ? () => setHover(true) : null}
+      onClick={isSmallDisplay ? () => setHover(true) : null}
     >
       {placeholder && <Placeholder />}
       {isHover && <GifPanel src={urlGIF} title={title} isLoad={isLoad} />}
